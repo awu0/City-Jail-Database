@@ -17,3 +17,7 @@ pip install -r requirements.txt
 ```
 
 ***Make sure the virtual environment is running before starting the app.***
+
+## Django
+A brief tutorial on Django can be found [here](https://docs.djangoproject.com/en/5.0/intro/tutorial01/).
+We are using Django because it is easier to use than Flask (what the professor introduced in class).
