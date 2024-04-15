@@ -2,6 +2,8 @@
 
 ## How to install
 
+You can use VSCode, PyCharm, or whatever editor/IDE you want to use.
+
 1. First clone the git repository
 ```
 git clone https://github.com/awu0/City-Jail-Database-Project.git
@@ -14,4 +16,4 @@ git clone https://github.com/awu0/City-Jail-Database-Project.git
 pip install -r requirements.txt
 ```
 
-Make sure the virtual environment is running before starting the app
+***Make sure the virtual environment is running before starting the app.***
