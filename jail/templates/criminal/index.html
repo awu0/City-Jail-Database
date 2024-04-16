@@ -21,11 +21,12 @@
                 <td>Phone</td>
                 <td>Violet Offender?</td>
                 <td>Probation?</td>
+                <td></td>
             </tr>
             </thead>
             {% for criminal in criminal_list %}
                 <tr>
-                    <td><a href="{% url 'criminal_update' criminal.criminal_id %}">{{ criminal.criminal_id }}</a></td>
+                    <td>{{ criminal.criminal_id }}</td>
                     <td>{{ criminal.last_name }}</td>
                     <td>{{ criminal.first_name }}</td>
                     <td>{{ criminal.street }}</td>
@@ -35,6 +36,7 @@
                     <td>{{ criminal.phone }}</td>
                     <td>{{ criminal.v_status }}</td>
                     <td>{{ criminal.p_status }}</td>
+                    <td><a href="{% url 'criminal_update' criminal.criminal_id %}">Edit</a></td>
                 </tr>
             {% endfor %}
         </table>
