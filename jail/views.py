@@ -1,6 +1,4 @@
-from django.forms import ModelForm
-from django.http import HttpResponse, Http404
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from django.views import generic
 
 from .forms import CriminalForm
@@ -19,9 +17,23 @@ class CriminalHomeView(generic.ListView):
         return Criminal.objects.order_by('criminal_id')
 
 
-class CriminalDetailView(generic.DetailView):
+class CriminalUpdateView(generic.UpdateView):
+    # TODO: restrict to certain users
     model = Criminal
-    template_name = 'criminal/detail.html'
+    template_name = 'criminal/update.html'
+    fields = [
+        'first_name',
+        'last_name',
+        'street',
+        'city',
+        'state',
+        'zip',
+        'phone',
+        'v_status',
+        'p_status'
+    ]
+
+    success_url = '/criminal'
 
 
 class CriminalFormView(generic.CreateView):
