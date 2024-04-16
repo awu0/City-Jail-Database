@@ -1,6 +1,9 @@
+from django.forms import ModelForm
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
+from django.views import generic
 
+from .forms import CriminalForm
 from .models import Criminal
 
 
@@ -8,14 +11,20 @@ def index(request):
     return HttpResponse("Home Page")
 
 
-def criminal_home(request):
-    criminal_list = Criminal.objects.order_by('criminal_id')
-    context = {
-        'criminal_list': criminal_list
-    }
-    return render(request, 'criminal/index.html', context)
+class CriminalHomeView(generic.ListView):
+    template_name = 'criminal/index.html'
+    context_object_name = 'criminal_list'
+
+    def get_queryset(self):
+        return Criminal.objects.order_by('criminal_id')
 
 
-def criminal_detail(request, criminal_id):
-    criminal = get_object_or_404(Criminal, pk=criminal_id)
-    return render(request, 'criminal/detail.html', {'criminal': criminal})
+class CriminalDetailView(generic.DetailView):
+    model = Criminal
+    template_name = 'criminal/detail.html'
+
+
+class CriminalFormView(generic.CreateView):
+    template_name = 'criminal/add.html'
+    form_class = CriminalForm
+    success_url = '/criminal'

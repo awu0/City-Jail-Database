@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # criminal paths
-    path('criminal', views.criminal_home, name='criminal_home'),
-    path('criminal/<int:criminal_id>/', views.criminal_detail, name='criminal_detail')
+    path('criminal', views.CriminalHomeView.as_view(), name='criminal_home'),
+    path('criminal/<int:pk>/', views.CriminalDetailView.as_view(), name='criminal_detail'),
+    path('criminal/add/', views.CriminalFormView.as_view(), name='criminal_add')
 ]
