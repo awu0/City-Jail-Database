@@ -116,7 +116,7 @@ class CrimeOfficer(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint('crime_id', 'officer_id', name='primary_key'),
+            models.UniqueConstraint(fields=['crime_id', 'officer_id'], name='primary_key'),
         ]
 
 
