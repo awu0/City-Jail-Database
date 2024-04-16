@@ -1,0 +1,42 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Criminals
+{% endblock %}
+
+{% block body %}
+    {% if criminal_list %}
+        <table>
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Last Name</td>
+                <td>First Name</td>
+                <td>Street</td>
+                <td>City</td>
+                <td>State</td>
+                <td>Zip</td>
+                <td>Phone</td>
+                <td>Violet Offender?</td>
+                <td>Probation?</td>
+            </tr>
+            </thead>
+            {% for criminal in criminal_list %}
+                <tr>
+                    <td><a href="{% url 'criminal_detail' criminal.criminal_id %}">{{ criminal.criminal_id }}</a></td>
+                    <td>{{ criminal.last_name }}</td>
+                    <td>{{ criminal.first_name }}</td>
+                    <td>{{ criminal.street }}</td>
+                    <td>{{ criminal.city }}</td>
+                    <td>{{ criminal.state }}</td>
+                    <td>{{ criminal.zip }}</td>
+                    <td>{{ criminal.phone }}</td>
+                    <td>{{ criminal.v_status }}</td>
+                    <td>{{ criminal.p_status }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No criminals found</p>
+    {% endif %}
+{% endblock %}
