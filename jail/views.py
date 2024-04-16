@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.views import generic
 
 from .forms import CriminalForm
@@ -6,7 +6,7 @@ from .models import Criminal
 
 
 def index(request):
-    return HttpResponse("Home Page")
+    return redirect('/criminal')
 
 
 class CriminalHomeView(generic.ListView):
