@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Criminal(models.Model):
-    criminal_id = models.IntegerField(primary_key=True)
+    criminal_id = models.AutoField(primary_key=True)
 
     last_name = models.CharField(max_length=15)
     first_name = models.CharField(max_length=10)
@@ -19,14 +19,14 @@ class Criminal(models.Model):
 
 
 class Alias(models.Model):
-    alias_id = models.IntegerField(primary_key=True)
+    alias_id = models.AutoField(primary_key=True)
     criminal_id = models.ForeignKey(Criminal, on_delete=models.CASCADE, default=0)
 
     alias = models.CharField(max_length=20)
 
 
 class Crime(models.Model):
-    crime_id = models.IntegerField(primary_key=True)
+    crime_id = models.AutoField(primary_key=True)
     criminal_id = models.ForeignKey(Criminal, on_delete=models.CASCADE)
 
     classification = models.CharField(max_length=1, default='U')
@@ -45,7 +45,7 @@ class Crime(models.Model):
 
 
 class ProbationOfficer(models.Model):
-    prob_id = models.IntegerField(primary_key=True)
+    prob_id = models.AutoField(primary_key=True)
 
     last_name = models.CharField(max_length=15)
     first_name = models.CharField(max_length=10)
@@ -61,7 +61,7 @@ class ProbationOfficer(models.Model):
 
 
 class Sentence(models.Model):
-    sentence_id = models.IntegerField(primary_key=True)
+    sentence_id = models.AutoField(primary_key=True)
     criminal_id = models.ForeignKey(Criminal, on_delete=models.CASCADE)
 
     type = models.CharField(max_length=1)
@@ -81,12 +81,12 @@ class Sentence(models.Model):
 
 
 class CrimeCodes(models.Model):
-    crime_code = models.IntegerField(primary_key=True)
+    crime_code = models.AutoField(primary_key=True)
     code_description = models.CharField(max_length=30, unique=True)
 
 
 class CrimeCharge(models.Model):
-    charge_id = models.IntegerField(primary_key=True)
+    charge_id = models.AutoField(primary_key=True)
     crime_id = models.ForeignKey(Crime, on_delete=models.CASCADE)
     crime_code = models.ForeignKey(CrimeCodes, on_delete=models.CASCADE)
 
@@ -98,7 +98,7 @@ class CrimeCharge(models.Model):
 
 
 class Officer(models.Model):
-    officer_id = models.IntegerField(primary_key=True)
+    officer_id = models.AutoField(primary_key=True)
 
     last_name = models.CharField(max_length=15)
     first_name = models.CharField(max_length=10)
@@ -121,7 +121,7 @@ class CrimeOfficer(models.Model):
 
 
 class Appeal(models.Model):
-    appeal_id = models.IntegerField(primary_key=True)
+    appeal_id = models.AutoField(primary_key=True)
     crime_id = models.ForeignKey(Crime, on_delete=models.CASCADE)
 
     filing_date = models.DateField(null=True, blank=True)
