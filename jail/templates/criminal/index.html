@@ -22,6 +22,7 @@
                 <td>Violet Offender?</td>
                 <td>Probation?</td>
                 <td></td>
+                <td></td>
             </tr>
             </thead>
             {% for criminal in criminal_list %}
@@ -37,6 +38,7 @@
                     <td>{{ criminal.v_status }}</td>
                     <td>{{ criminal.p_status }}</td>
                     <td><a href="{% url 'criminal_update' criminal.criminal_id %}">Edit</a></td>
+                    <td><a href="{% url 'criminal_delete' criminal.criminal_id %}">Delete</a></td>
                 </tr>
             {% endfor %}
         </table>

@@ -6,7 +6,7 @@ from .models import Criminal
 
 
 def index(request):
-    return redirect('/criminal')
+    return redirect('/criminal/')
 
 
 class CriminalHomeView(generic.ListView):
@@ -33,10 +33,20 @@ class CriminalUpdateView(generic.UpdateView):
         'p_status'
     ]
 
-    success_url = '/criminal'
+    success_url = '/criminal/'
 
 
 class CriminalFormView(generic.CreateView):
+    """
+    For adding a new criminal
+    """
     template_name = 'criminal/add.html'
     form_class = CriminalForm
-    success_url = '/criminal'
+    success_url = '/criminal/'
+
+
+class CriminalDeleteView(generic.DeleteView):
+    model = Criminal
+
+    template_name = 'criminal/delete.html'
+    success_url = '/criminal/'
