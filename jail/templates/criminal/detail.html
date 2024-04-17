@@ -40,6 +40,19 @@
         </tr>
     </table>
 
+    <h2>Known Aliases</h2>
+    {% if alias_list %}
+        <ul>
+            {% for alias in alias_list %}
+                <li>
+                    {{ alias.alias }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No alias found</p>
+    {% endif %}
+
     <div>
         <a href="{% url 'criminal_home' %}">
             <button>All Criminals</button>

@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.views import generic
 
 from .forms import CriminalForm
-from .models import Criminal
+from .models import Criminal, Alias
 
 
 def index(request):
@@ -20,6 +20,12 @@ class CriminalHomeView(generic.ListView):
 class CriminalDetailView(generic.DetailView):
     model = Criminal
     template_name = 'criminal/detail.html'
+
+    def get_context_data(self, **kwargs):
+        return {
+            'object': Criminal.objects.get(pk=self.kwargs['pk']),
+            'alias_list': Alias.objects.filter(criminal_id=self.kwargs['pk'])
+        }
 
 
 class CriminalUpdateView(generic.UpdateView):
