@@ -1,0 +1,38 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Aliases
+{% endblock %}
+
+{% block body %}
+    <h1>All Aliases</h1>
+
+    {% if alias_list %}
+        <table>
+            <thead>
+            <tr>
+                <td>Alias ID</td>
+                <td>Criminal ID</td>
+                <td>Alias</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for alias in alias_list %}
+                <tr>
+                    <td>{{ alias.alias_id }}</td>
+                    <td><a href="{% url 'criminal_detail' alias.criminal.criminal_id %}">{{ alias.criminal.criminal_id }}</a></td>
+                    <td>{{ alias.alias }}</td>
+                    <td><a href="{% url 'alias_update' alias.alias_id %}">Edit</a></td>
+                    <td><a href="{% url 'alias_delete' alias.alias_id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No aliases found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'alias_add' %}"><button>Add new</button></a>
+    </div>
+{% endblock %}
