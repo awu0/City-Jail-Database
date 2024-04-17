@@ -1,11 +1,6 @@
-from django.shortcuts import redirect
 from django.views import generic
 
-from .models import Criminal, Alias
-
-
-def index(request):
-    return redirect('/criminal/')
+from jail.models import Criminal, Alias
 
 
 class CriminalHomeView(generic.ListView):
@@ -22,10 +17,10 @@ class CriminalDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
+
         context['object'] = Criminal.objects.get(pk=self.kwargs['pk'])
         context['alias_list'] = Alias.objects.filter(criminal_id=self.kwargs['pk'])
-        
+
         return context
 
 
