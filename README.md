@@ -1,5 +1,20 @@
 # City Jail Database Project
 
+## Tasks to do
+- [ ] Create pages for all the required models (CRUD: Create, Read, Update, Delete)
+- [ ] Create user login/register pages; allowed permissions:
+   - Developers: CRUD
+   - City Jail Directors: CRUD
+   - Police Officers: CR (for Criminals only)
+   - Court employees? (judges?)
+- [ ] Do at least one of the following:
+   -  Sort data 
+   - Search or filter data 
+   - Export data (from the database) in some forms (such as JSON, XML, HTML, or CSV)
+   - Upload / import data (in some forms such as JSON, XML, HTML, or CSV) into the database
+- [ ] Use CSS to style the website (Bootstrap is easiest probably)
+
+
 ## How to install
 
 You can use VSCode, PyCharm, or whatever editor/IDE you want to use.
