@@ -12,4 +12,6 @@ urlpatterns = [
     path('criminal/<int:pk>/update/', views.CriminalUpdateView.as_view(), name='criminal_update'),
     path('criminal/add/', views.CriminalFormView.as_view(), name='criminal_add'),
     path('criminal/<int:pk>/delete/', views.CriminalDeleteView.as_view(), name='criminal_delete'),
+
+    # alias paths
 ]

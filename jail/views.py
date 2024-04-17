@@ -1,7 +1,6 @@
 from django.shortcuts import redirect
 from django.views import generic
 
-from .forms import CriminalForm
 from .models import Criminal, Alias
 
 
@@ -22,10 +21,12 @@ class CriminalDetailView(generic.DetailView):
     template_name = 'criminal/detail.html'
 
     def get_context_data(self, **kwargs):
-        return {
-            'object': Criminal.objects.get(pk=self.kwargs['pk']),
-            'alias_list': Alias.objects.filter(criminal_id=self.kwargs['pk'])
-        }
+        context = super().get_context_data(**kwargs)
+        
+        context['object'] = Criminal.objects.get(pk=self.kwargs['pk'])
+        context['alias_list'] = Alias.objects.filter(criminal_id=self.kwargs['pk'])
+        
+        return context
 
 
 class CriminalUpdateView(generic.UpdateView):
@@ -52,7 +53,8 @@ class CriminalFormView(generic.CreateView):
     For adding a new criminal
     """
     template_name = 'criminal/add.html'
-    form_class = CriminalForm
+    model = Criminal
+    fields = '__all__'
     success_url = '/criminal/'
 
 
