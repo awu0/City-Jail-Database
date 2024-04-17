@@ -1,6 +1,8 @@
 <!--
 Use this template for rendering all the other html files
 -->
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +10,7 @@ Use this template for rendering all the other html files
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'jail/style.css' %}">
     <title>
         {% block title %}
         {% endblock %}
