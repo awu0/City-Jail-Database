@@ -17,6 +17,11 @@ class CriminalHomeView(generic.ListView):
         return Criminal.objects.order_by('criminal_id')
 
 
+class CriminalDetailView(generic.DetailView):
+    model = Criminal
+    template_name = 'criminal/detail.html'
+
+
 class CriminalUpdateView(generic.UpdateView):
     # TODO: restrict to certain users
     model = Criminal

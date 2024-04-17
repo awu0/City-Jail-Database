@@ -1,0 +1,48 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Criminal: {{ object.criminal_id }}
+{% endblock %}
+
+{% block body %}
+    <h1>Criminal ({{ object.criminal_id }})</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Last Name</td>
+            <td>First Name</td>
+            <td>Street</td>
+            <td>City</td>
+            <td>State</td>
+            <td>Zip</td>
+            <td>Phone</td>
+            <td>Violet Offender?</td>
+            <td>Probation?</td>
+            <td></td>
+            <td></td>
+        </tr>
+        </thead>
+        <tr>
+            <td>{{ object.criminal_id }}</td>
+            <td>{{ object.last_name }}</td>
+            <td>{{ object.first_name }}</td>
+            <td>{{ object.street }}</td>
+            <td>{{ object.city }}</td>
+            <td>{{ object.state }}</td>
+            <td>{{ object.zip }}</td>
+            <td>{{ object.phone }}</td>
+            <td>{{ object.v_status }}</td>
+            <td>{{ object.p_status }}</td>
+            <td><a href="{% url 'criminal_update' object.criminal_id %}">Edit</a></td>
+            <td><a href="{% url 'criminal_delete' object.criminal_id %}">Delete</a></td>
+        </tr>
+    </table>
+
+    <div>
+        <a href="{% url 'criminal_home' %}">
+            <button>All Criminals</button>
+        </a>
+    </div>
+{% endblock %}
