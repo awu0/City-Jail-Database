@@ -20,14 +20,14 @@ class Criminal(models.Model):
 
 class Alias(models.Model):
     alias_id = models.AutoField(primary_key=True)
-    criminal_id = models.ForeignKey(Criminal, on_delete=models.CASCADE, default=0)
+    criminal = models.ForeignKey(Criminal, on_delete=models.CASCADE, default=0)
 
     alias = models.CharField(max_length=20)
 
 
 class Crime(models.Model):
     crime_id = models.AutoField(primary_key=True)
-    criminal_id = models.ForeignKey(Criminal, on_delete=models.CASCADE)
+    criminal = models.ForeignKey(Criminal, on_delete=models.CASCADE)
 
     classification = models.CharField(max_length=1, default='U')
     date_charged = models.DateField(null=True, blank=True)
@@ -62,7 +62,7 @@ class ProbationOfficer(models.Model):
 
 class Sentence(models.Model):
     sentence_id = models.AutoField(primary_key=True)
-    criminal_id = models.ForeignKey(Criminal, on_delete=models.CASCADE)
+    criminal = models.ForeignKey(Criminal, on_delete=models.CASCADE)
 
     type = models.CharField(max_length=1)
     prob_officer = models.ForeignKey(ProbationOfficer, on_delete=models.CASCADE, db_column='prob_id')
@@ -87,7 +87,7 @@ class CrimeCodes(models.Model):
 
 class CrimeCharge(models.Model):
     charge_id = models.AutoField(primary_key=True)
-    crime_id = models.ForeignKey(Crime, on_delete=models.CASCADE)
+    crime = models.ForeignKey(Crime, on_delete=models.CASCADE)
     crime_code = models.ForeignKey(CrimeCodes, on_delete=models.CASCADE)
 
     charge_status = models.CharField(max_length=2)
@@ -111,8 +111,8 @@ class Officer(models.Model):
 
 
 class CrimeOfficer(models.Model):
-    crime_id = models.ForeignKey(Crime, on_delete=models.CASCADE)
-    officer_id = models.ForeignKey(Officer, on_delete=models.CASCADE)
+    crime = models.ForeignKey(Crime, on_delete=models.CASCADE)
+    officer = models.ForeignKey(Officer, on_delete=models.CASCADE)
 
     class Meta:
         constraints = [
@@ -122,7 +122,7 @@ class CrimeOfficer(models.Model):
 
 class Appeal(models.Model):
     appeal_id = models.AutoField(primary_key=True)
-    crime_id = models.ForeignKey(Crime, on_delete=models.CASCADE)
+    crime = models.ForeignKey(Crime, on_delete=models.CASCADE)
 
     filing_date = models.DateField(null=True, blank=True)
     hearing_date = models.DateField(null=True, blank=True)
