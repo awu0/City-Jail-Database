@@ -1,6 +1,6 @@
 from django.views import generic
 
-from jail.models import Crime, CrimeCharge, CrimeOfficer
+from jail.models import Crime, CrimeCharge, CrimeOfficer, Appeal
 
 
 class CrimeHomeView(generic.ListView):
@@ -20,6 +20,7 @@ class CrimeDetailView(generic.DetailView):
 
         context['crime_charge_list'] = CrimeCharge.objects.filter(crime__crime_id=int(self.kwargs['pk']))
         context['crime_officer_list'] = CrimeOfficer.objects.filter(crime__crime_id=int(self.kwargs['pk']))
+        context['appeal_list'] = Appeal.objects.filter(crime__crime_id=int(self.kwargs['pk']))
 
         return context
 

@@ -113,6 +113,36 @@
         {% else %}
             <p>No officers found</p>
         {% endif %}
+    </div>
+
+    <div>
+        <h2>Appeals</h2>
+        {% if appeal_list %}
+            <table>
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Filing Date</td>
+                    <td>Hearing Date</td>
+                    <td>Status</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </thead>
+                {% for appeal in appeal_list %}
+                    <tr>
+                        <td>{{ appeal.appeal_id }}</td>
+                        <td>{{ appeal.filing_date }}</td>
+                        <td>{{ appeal.hearing_date }}</td>
+                        <td>{{ appeal.status }}</td>
+                        <td><a href="{% url 'appeal_update' appeal.appeal_id %}">Edit</a></td>
+                        <td><a href="{% url 'appeal_delete' appeal.appeal_id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No appeals found</p>
+        {% endif %}
 
     </div>
 
