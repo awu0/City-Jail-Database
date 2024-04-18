@@ -1,0 +1,38 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Crime Codes
+{% endblock %}
+
+{% block body %}
+    <h1>All Crime Codes</h1>
+
+    {% if crime_code_list %}
+        <table>
+            <thead>
+            <tr>
+                <td>Crime Code</td>
+                <td>Code Description</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for crime_code in crime_code_list %}
+                <tr>
+                    <td>{{ crime_code.crime_code }}</td>
+                    <td>{{ crime_code.code_description }}</td>
+                    <td><a href="{% url 'crime_code_update' crime_code.crime_code %}">Edit</a></td>
+                    <td><a href="{% url 'crime_code_delete' crime_code.crime_code %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No crime codes found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'crime_code_add' %}">
+            <button>Add new</button>
+        </a>
+    </div>
+{% endblock %}

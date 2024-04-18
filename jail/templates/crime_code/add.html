@@ -1,0 +1,16 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Add Crime Code
+{% endblock %}
+
+{% block body %}
+    <h1>Add Crime Code</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+    <a href="{% url 'crime_code_home' %}"><button>Cancel</button></a>
+{% endblock %}
