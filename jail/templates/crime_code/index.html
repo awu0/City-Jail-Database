@@ -19,7 +19,7 @@
             </thead>
             {% for crime_code in crime_code_list %}
                 <tr>
-                    <td>{{ crime_code.crime_code }}</td>
+                    <td><a href="{% url 'crime_code_detail' crime_code.crime_code %}">{{ crime_code.crime_code }}</a></td>
                     <td>{{ crime_code.code_description }}</td>
                     <td><a href="{% url 'crime_code_update' crime_code.crime_code %}">Edit</a></td>
                     <td><a href="{% url 'crime_code_delete' crime_code.crime_code %}">Delete</a></td>

@@ -48,6 +48,7 @@ urlpatterns = [
 
     # crime code paths
     path('crime_code/', crime_code_views.CrimeCodeHomeView.as_view(), name='crime_code_home'),
+    path('crime_code/<int:pk>/', crime_code_views.CrimeCodeDetailView.as_view(), name='crime_code_detail'),
     path('crime_code/<int:pk>/update/', crime_code_views.CrimeCodeUpdateView.as_view(), name='crime_code_update'),
     path('crime_code/add/', crime_code_views.CrimeCodeFormView.as_view(), name='crime_code_add'),
     path('crime_code/<int:pk>/delete/', crime_code_views.CrimeCodeDeleteView.as_view(), name='crime_code_delete'),

@@ -1,6 +1,6 @@
 from django.views import generic
 
-from jail.models import CrimeCode
+from jail.models import CrimeCode, CrimeCharge
 
 
 class CrimeCodeHomeView(generic.ListView):
@@ -9,6 +9,18 @@ class CrimeCodeHomeView(generic.ListView):
 
     def get_queryset(self):
         return CrimeCode.objects.order_by('crime_code')
+
+
+class CrimeCodeDetailView(generic.DetailView):
+    model = CrimeCode
+    template_name = 'crime_code/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['crime_charge_list'] = CrimeCharge.objects.filter(crime_code__crime_code=int(self.kwargs['pk']))
+
+        return context
 
 
 class CrimeCodeUpdateView(generic.UpdateView):

@@ -120,7 +120,7 @@ class CrimeCode(models.Model):
     code_description = models.CharField(max_length=30, unique=True)
 
     def __str__(self):
-        return self.code_description
+        return f'{self.code_description} ({self.crime_code})'
 
 
 class CrimeCharge(models.Model):

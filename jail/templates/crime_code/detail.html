@@ -1,0 +1,70 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Crime Code: {{ object.crime_code }}
+{% endblock %}
+
+{% block body %}
+    <h1>Crime Code ({{ object.crime_code }})</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <td>Crime Code</td>
+            <td>Code Description</td>
+            <td></td>
+            <td></td>
+        </tr>
+        </thead>
+        <tr>
+            <td>{{ object.crime_code }}</td>
+            <td>{{ object.code_description }}</td>
+            <td><a href="{% url 'crime_code_update' object.crime_code %}">Edit</a></td>
+            <td><a href="{% url 'crime_code_delete' object.crime_code %}">Delete</a></td>
+        </tr>
+    </table>
+
+    <div>
+        <h2>Crime Charges</h2>
+
+        {% if crime_charge_list %}
+            <table>
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Crime ID</td>
+                    <td>Charge Status</td>
+                    <td>Fine Amount</td>
+                    <td>Court Fee</td>
+                    <td>Amount Paid</td>
+                    <td>Pay Due Date</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </thead>
+                {% for crime_charge in crime_charge_list %}
+                    <tr>
+                        <td>{{ crime_charge.charge_id }}</td>
+                        <td>
+                            <a href="{% url 'crime_detail' crime_charge.crime.crime_id %}">{{ crime_charge.crime.crime_id }}</a>
+                        </td>
+                        <td>{{ crime_charge.charge_status }}</td>
+                        <td>{{ crime_charge.fine_amount }}</td>
+                        <td>{{ crime_charge.court_fee }}</td>
+                        <td>{{ crime_charge.amount_paid }}</td>
+                        <td>{{ crime_charge.pay_due_date }}</td>
+                        <td><a href="{% url 'crime_charge_update' crime_charge.charge_id %}">Edit</a></td>
+                        <td><a href="{% url 'crime_charge_delete' crime_charge.charge_id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No crime charges found</p>
+        {% endif %}
+    </div>
+    <div>
+        <a href="{% url 'crime_code_home' %}">
+            <button>All Crime Codes</button>
+        </a>
+    </div>
+{% endblock %}
