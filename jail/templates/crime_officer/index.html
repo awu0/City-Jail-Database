@@ -1,0 +1,41 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Crimes Associated with Officer
+{% endblock %}
+
+{% block body %}
+    <h1>Crimes and Associated Officers</h1>
+
+    {% if crime_officer_list %}
+        <table>
+            <thead>
+            <tr>
+                <td>Crime ID</td>
+                <td>Officer ID</td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for crime_officer in crime_officer_list %}
+                <tr>
+                    <td><a href="{% url 'crime_detail' crime_officer.crime.crime_id %}">{{ crime_officer.crime }}</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'officer_detail' crime_officer.officer.officer_id %}">{{ crime_officer.officer }}</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'crime_officer_delete' crime_officer.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nothing found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'crime_officer_add' %}">
+            <button>Add new</button>
+        </a>
+    </div>
+{% endblock %}
