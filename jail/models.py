@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Criminal(models.Model):
+    class YesOrNo(models.TextChoices):
+        Y = 'Y'  # Yes
+        N = 'N'  # No
+
     criminal_id = models.AutoField(primary_key=True)
 
     last_name = models.CharField(max_length=15)
@@ -14,8 +18,8 @@ class Criminal(models.Model):
 
     phone = models.CharField(max_length=10)
 
-    v_status = models.CharField(max_length=1, default='N')  # violet_offender_status
-    p_status = models.CharField(max_length=1, default='N')  # probation_status
+    v_status = models.CharField(max_length=1, choices=YesOrNo.choices, default=YesOrNo.N)  # violet_offender_status
+    p_status = models.CharField(max_length=1, choices=YesOrNo.choices, default=YesOrNo.N)  # probation_status
 
 
 class Alias(models.Model):
@@ -26,12 +30,23 @@ class Alias(models.Model):
 
 
 class Crime(models.Model):
+    class Classification(models.TextChoices):
+        F = 'F'  # Felony
+        M = 'M'  # Misdemeanor
+        O = 'O'  # Other
+        U = 'U'  # Undefined
+
+    class Status(models.TextChoices):
+        CL = 'CL'  # Closed
+        CA = 'CA'  # Can Appeal
+        IA = 'IA'  # In Appeal
+
     crime_id = models.AutoField(primary_key=True)
     criminal = models.ForeignKey(Criminal, on_delete=models.CASCADE)
 
-    classification = models.CharField(max_length=1, default='U')
+    classification = models.CharField(max_length=1, choices=Classification.choices, default=Classification.U)
     date_charged = models.DateField(null=True, blank=True)
-    status = models.CharField(max_length=2)
+    status = models.CharField(max_length=2, choices=Status.choices)
     hearing_date = models.DateField(null=True, blank=True)
     appeal_cut_date = models.DateField(null=True, blank=True)
 
@@ -45,6 +60,10 @@ class Crime(models.Model):
 
 
 class ProbationOfficer(models.Model):
+    class Status(models.TextChoices):
+        A = 'A'  # Active
+        I = 'I'  # Inactive
+
     prob_id = models.AutoField(primary_key=True)
 
     last_name = models.CharField(max_length=15)
@@ -57,14 +76,19 @@ class ProbationOfficer(models.Model):
 
     phone = models.CharField(max_length=10)
     email = models.EmailField(max_length=30)
-    status = models.CharField(max_length=1)
+    status = models.CharField(max_length=1, choices=Status.choices)
 
 
 class Sentence(models.Model):
+    class SentenceType(models.TextChoices):
+        J = 'J'  # Jail Period
+        H = 'H'  # House Arrest
+        p = 'P'  # Probation
+
     sentence_id = models.AutoField(primary_key=True)
     criminal = models.ForeignKey(Criminal, on_delete=models.CASCADE)
 
-    type = models.CharField(max_length=1)
+    type = models.CharField(max_length=1, choices=SentenceType.choices)
     prob_officer = models.ForeignKey(ProbationOfficer, on_delete=models.CASCADE, db_column='prob_id')
 
     start_date = models.DateField(null=True, blank=True)
@@ -86,11 +110,16 @@ class CrimeCodes(models.Model):
 
 
 class CrimeCharge(models.Model):
+    class ChargeStatus(models.TextChoices):
+        PD = 'PD'  # Pending
+        GL = 'GL'  # Guilty
+        NG = 'NG'  # Not Guilty
+
     charge_id = models.AutoField(primary_key=True)
     crime = models.ForeignKey(Crime, on_delete=models.CASCADE)
     crime_code = models.ForeignKey(CrimeCodes, on_delete=models.CASCADE)
 
-    charge_status = models.CharField(max_length=2)
+    charge_status = models.CharField(max_length=2, choices=ChargeStatus.choices)
     fine_amount = models.IntegerField(null=True, blank=True)
     court_fee = models.IntegerField(null=True, blank=True)
     amount_paid = models.IntegerField(null=True, blank=True)
@@ -98,6 +127,10 @@ class CrimeCharge(models.Model):
 
 
 class Officer(models.Model):
+    class Status(models.TextChoices):
+        A = 'A'  # Active
+        I = 'I'  # Inactive
+
     officer_id = models.AutoField(primary_key=True)
 
     last_name = models.CharField(max_length=15)
@@ -107,7 +140,7 @@ class Officer(models.Model):
     badge = models.CharField(max_length=14, unique=True)
 
     phone = models.CharField(max_length=10)
-    status = models.CharField(max_length=1, default='A')
+    status = models.CharField(max_length=1, choices=Status.choices, default=Status.A)
 
 
 class CrimeOfficer(models.Model):
@@ -121,9 +154,14 @@ class CrimeOfficer(models.Model):
 
 
 class Appeal(models.Model):
+    class Status(models.TextChoices):
+        P = 'P'  # Pending
+        A = 'A'  # Approved
+        D = 'D'  # Disapproved
+
     appeal_id = models.AutoField(primary_key=True)
     crime = models.ForeignKey(Crime, on_delete=models.CASCADE)
 
     filing_date = models.DateField(null=True, blank=True)
     hearing_date = models.DateField(null=True, blank=True)
-    status = models.CharField(max_length=1, default='P')
+    status = models.CharField(max_length=1, choices=Status.choices, default=Status.P)
