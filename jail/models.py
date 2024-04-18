@@ -21,6 +21,9 @@ class Criminal(models.Model):
     v_status = models.CharField(max_length=1, choices=YesOrNo.choices, default=YesOrNo.N)  # violet_offender_status
     p_status = models.CharField(max_length=1, choices=YesOrNo.choices, default=YesOrNo.N)  # probation_status
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} ({self.criminal_id})'
+
 
 class Alias(models.Model):
     alias_id = models.AutoField(primary_key=True)
@@ -49,6 +52,9 @@ class Crime(models.Model):
     status = models.CharField(max_length=2, choices=Status.choices)
     hearing_date = models.DateField(null=True, blank=True)
     appeal_cut_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f'Crime ({self.crime_id}) commited by {self.criminal.first_name} {self.criminal.last_name} ({self.criminal.criminal_id})'
 
     class Meta:
         constraints = [
@@ -79,6 +85,9 @@ class ProbationOfficer(models.Model):
     email = models.EmailField(max_length=30)
     status = models.CharField(max_length=1, choices=Status.choices)
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} ({self.prob_id})'
+
 
 class Sentence(models.Model):
     class SentenceType(models.TextChoices):
@@ -90,7 +99,7 @@ class Sentence(models.Model):
     criminal = models.ForeignKey(Criminal, on_delete=models.CASCADE)
 
     type = models.CharField(max_length=1, choices=SentenceType.choices)
-    prob_officer = models.ForeignKey(ProbationOfficer, on_delete=models.CASCADE, db_column='prob_id')
+    prob_officer = models.ForeignKey(ProbationOfficer, on_delete=models.CASCADE)
 
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
@@ -109,6 +118,9 @@ class Sentence(models.Model):
 class CrimeCodes(models.Model):
     crime_code = models.AutoField(primary_key=True)
     code_description = models.CharField(max_length=30, unique=True)
+
+    def __str__(self):
+        return self.code_description[:15]
 
 
 class CrimeCharge(models.Model):
@@ -143,6 +155,9 @@ class Officer(models.Model):
 
     phone = models.CharField(max_length=10)
     status = models.CharField(max_length=1, choices=Status.choices, default=Status.A)
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} ({self.officer_id})'
 
 
 class CrimeOfficer(models.Model):
