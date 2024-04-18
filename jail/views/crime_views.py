@@ -1,5 +1,3 @@
-from django import forms
-from django.forms import ModelForm
 from django.views import generic
 
 from jail.models import Crime

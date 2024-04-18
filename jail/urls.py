@@ -1,7 +1,7 @@
 from django.urls import path
 
 from jail.views import views
-from jail.views import criminal_views, alias_views, crime_views
+from jail.views import criminal_views, alias_views, crime_views, probation_officer_views
 
 urlpatterns = [
     # home paths
@@ -25,4 +25,16 @@ urlpatterns = [
     path('crime/<int:pk>/update/', crime_views.CrimeUpdateView.as_view(), name='crime_update'),
     path('crime/add/', crime_views.CrimeFormView.as_view(), name='crime_add'),
     path('crime/<int:pk>/delete/', crime_views.CrimeDeleteView.as_view(), name='crime_delete'),
+
+    # probation officer paths
+    path('probation_officer/', probation_officer_views.ProbationOfficerHomeView.as_view(),
+         name='probation_officer_home'),
+    path('probation_officer/<int:pk>/', probation_officer_views.ProbationOfficerDetailView.as_view(),
+         name='probation_officer_detail'),
+    path('probation_officer/<int:pk>/update', probation_officer_views.ProbationOfficerUpdateView.as_view(),
+         name='probation_officer_update'),
+    path('probation_officer/add/', probation_officer_views.ProbationOfficerFormView.as_view(),
+         name='probation_officer_add'),
+    path('probation_officer/<int:pk>/delete', probation_officer_views.ProbationOfficerDeleteView.as_view(),
+         name='probation_officer_delete'),
 ]

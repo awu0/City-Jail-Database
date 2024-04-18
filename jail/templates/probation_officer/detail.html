@@ -1,0 +1,48 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Probation Officer: {{ object.prob_id }}
+{% endblock %}
+
+{% block body %}
+    <h1>Probation Officer ({{ object.prob_id }})</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Last Name</td>
+            <td>First Name</td>
+            <td>Street</td>
+            <td>City</td>
+            <td>State</td>
+            <td>Zip</td>
+            <td>Phone</td>
+            <td>Email</td>
+            <td>Status</td>
+            <td></td>
+            <td></td>
+        </tr>
+        </thead>
+        <tr>
+            <td>{{ object.prob_id }}</td>
+            <td>{{ object.last_name }}</td>
+            <td>{{ object.first_name }}</td>
+            <td>{{ object.street }}</td>
+            <td>{{ object.city }}</td>
+            <td>{{ object.state }}</td>
+            <td>{{ object.zip }}</td>
+            <td>{{ object.phone }}</td>
+            <td>{{ object.email }}</td>
+            <td>{{ object.status }}</td>
+            <td><a href="{% url 'probation_officer_update' object.prob_id %}">Edit</a></td>
+            <td><a href="{% url 'probation_officer_delete' object.prob_id %}">Delete</a></td>
+        </tr>
+    </table>
+
+    <div>
+        <a href="{% url 'probation_officer_home' %}">
+            <button>All Probation Officers</button>
+        </a>
+    </div>
+{% endblock %}

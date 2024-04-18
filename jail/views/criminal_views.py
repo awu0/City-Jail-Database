@@ -18,7 +18,6 @@ class CriminalDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['object'] = Criminal.objects.get(pk=self.kwargs['pk'])
         context['alias_list'] = Alias.objects.filter(criminal_id=self.kwargs['pk'])
         context['crime_list'] = Crime.objects.filter(criminal_id=self.kwargs['pk'])
 
