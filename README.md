@@ -1,7 +1,7 @@
 # City Jail Database Project
 
 ## Tasks to do
-- [ ] Create pages for all the required models (CRUD: Create, Read, Update, Delete)
+- [x] Create pages for all the required models (CRUD: Create, Read, Update, Delete)
 - [ ] Create user login/register pages; allowed permissions:
    - Developers: CRUD
    - City Jail Directors: CRUD
