@@ -115,7 +115,7 @@ class Sentence(models.Model):
         ]
 
 
-class CrimeCodes(models.Model):
+class CrimeCode(models.Model):
     crime_code = models.AutoField(primary_key=True)
     code_description = models.CharField(max_length=30, unique=True)
 
@@ -131,7 +131,7 @@ class CrimeCharge(models.Model):
 
     charge_id = models.AutoField(primary_key=True)
     crime = models.ForeignKey(Crime, on_delete=models.CASCADE)
-    crime_code = models.ForeignKey(CrimeCodes, on_delete=models.CASCADE)
+    crime_code = models.ForeignKey(CrimeCode, on_delete=models.CASCADE)
 
     charge_status = models.CharField(max_length=2, choices=ChargeStatus.choices)
     fine_amount = models.IntegerField(null=True, blank=True)
