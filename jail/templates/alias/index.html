@@ -21,7 +21,7 @@
             {% for alias in alias_list %}
                 <tr>
                     <td>{{ alias.alias_id }}</td>
-                    <td><a href="{% url 'criminal_detail' alias.criminal.criminal_id %}">{{ alias.criminal.criminal_id }}</a></td>
+                    <td><a href="{% url 'criminal_detail' alias.criminal.criminal_id %}">{{ alias.criminal }}</a></td>
                     <td>{{ alias.alias }}</td>
                     <td><a href="{% url 'alias_update' alias.alias_id %}">Edit</a></td>
                     <td><a href="{% url 'alias_delete' alias.alias_id %}">Delete</a></td>

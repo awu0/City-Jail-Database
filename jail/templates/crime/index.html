@@ -24,8 +24,8 @@
             </thead>
             {% for crime in crime_list %}
                 <tr>
-                    <td>{{ crime.crime_id }}</td>
-                    <td><a href="{% url 'criminal_detail' crime.criminal.criminal_id %}">{{ crime.criminal.criminal_id }}</a></td>
+                    <td><a href="{% url 'crime_detail' crime.crime_id %}">{{ crime.crime_id }}</a></td>
+                    <td><a href="{% url 'criminal_detail' crime.criminal.criminal_id %}">{{ crime.criminal }}</a></td>
                     <td>{{ crime.classification }}</td>
                     <td>{{ crime.date_charged }}</td>
                     <td>{{ crime.status }}</td>

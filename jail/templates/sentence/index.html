@@ -26,11 +26,11 @@
                 <tr>
                     <td>{{ sentence.sentence_id }}</td>
                     <td>
-                        <a href="{% url 'criminal_detail' sentence.criminal.criminal_id %}">{{ sentence.criminal.criminal_id }}</a>
+                        <a href="{% url 'criminal_detail' sentence.criminal.criminal_id %}">{{ sentence.criminal }}</a>
                     </td>
                     <td>{{ sentence.type }}</td>
                     <td>
-                        <a href="{% url 'probation_officer_detail' sentence.prob_officer.prob_id %}">{{ sentence.prob_officer.prob_id }}</a>
+                        <a href="{% url 'probation_officer_detail' sentence.prob_officer.prob_id %}">{{ sentence.prob_officer }}</a>
                     </td>
                     <td>{{ sentence.start_date }}</td>
                     <td>{{ sentence.end_date }}</td>
