@@ -34,7 +34,7 @@ class OfficerUpdateView(generic.UpdateView):
 
 class OfficerFormView(generic.CreateView):
     """
-    For adding a new criminal
+    For adding a new officer
     """
     template_name = 'officer/add.html'
     model = Officer

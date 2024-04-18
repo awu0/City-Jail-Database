@@ -34,7 +34,7 @@ class ProbationOfficerUpdateView(generic.UpdateView):
 
 class ProbationOfficerFormView(generic.CreateView):
     """
-    For adding a new criminal
+    For adding a new probation officer
     """
     template_name = 'probation_officer/add.html'
     model = ProbationOfficer

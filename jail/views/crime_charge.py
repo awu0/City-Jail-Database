@@ -29,7 +29,7 @@ class CrimeChargeUpdateView(generic.UpdateView):
 
 class CrimeChargeFormView(generic.CreateView):
     """
-    For adding a new alias
+    For adding a new crime charge
     """
     template_name = 'crime_charge/add.html'
     model = CrimeCharge

@@ -27,7 +27,7 @@ class SentenceUpdateView(generic.UpdateView):
 
 class SentenceFormView(generic.CreateView):
     """
-    For adding a new crime
+    For adding a new sentence
     """
     template_name = 'sentence/add.html'
     model = Sentence

@@ -26,7 +26,7 @@ class AppealUpdateView(generic.UpdateView):
 
 class AppealFormView(generic.CreateView):
     """
-    For adding a new alias
+    For adding a new appeal
     """
     template_name = 'appeal/add.html'
     model = Appeal

@@ -11,7 +11,6 @@ class CrimeOfficerHomeView(generic.ListView):
         return CrimeOfficer.objects.order_by('crime')
 
 
-
 class CrimeOfficerFormView(generic.CreateView):
     """
     For adding a new Crime & Officer Association
