@@ -1,0 +1,52 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Sentences
+{% endblock %}
+
+{% block body %}
+    <h1>All Sentences</h1>
+
+    {% if sentence_list %}
+        <table>
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Criminal ID</td>
+                <td>Type</td>
+                <td>Probation Officer ID</td>
+                <td>Start Date</td>
+                <td>End Date</td>
+                <td>Violations</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for sentence in sentence_list %}
+                <tr>
+                    <td>{{ sentence.sentence_id }}</td>
+                    <td>
+                        <a href="{% url 'criminal_detail' sentence.criminal.criminal_id %}">{{ sentence.criminal.criminal_id }}</a>
+                    </td>
+                    <td>{{ sentence.type }}</td>
+                    <td>
+                        <a href="{% url 'probation_officer_detail' sentence.prob_officer.prob_id %}">{{ sentence.prob_officer.prob_id }}</a>
+                    </td>
+                    <td>{{ sentence.start_date }}</td>
+                    <td>{{ sentence.end_date }}</td>
+                    <td>{{ sentence.violations }}</td>
+                    <td><a href="{% url 'sentence_update' sentence.sentence_id %}">Edit</a></td>
+                    <td><a href="{% url 'sentence_delete' sentence.sentence_id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No sentences found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'sentence_add' %}">
+            <button>Add new</button>
+        </a>
+    </div>
+{% endblock %}

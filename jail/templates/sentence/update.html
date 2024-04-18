@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Update Sentence: {{ object.sentence_id }}
+{% endblock %}
+
+{% block body %}
+    <h1>Update Sentence ({{ sentence.sentence_id }}) for {{ object.criminal.first_name }} {{ object.criminal.last_name }} ({{ object.criminal.criminal_id }})</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+
+    <a href="{% url 'sentence_home' %}">
+        <button>Cancel</button>
+    </a>
+{% endblock %}
