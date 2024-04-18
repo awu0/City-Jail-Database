@@ -14,7 +14,7 @@
         <input type="submit" value="Confirm">
     </form>
 
-    <a href="{% url 'crime_code_home' %}">
+    <a href="{% url 'crime_code_detail' object.crime_code %}">
         <button>Cancel</button>
     </a>
 {% endblock %}
