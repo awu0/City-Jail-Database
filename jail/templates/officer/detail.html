@@ -58,7 +58,7 @@
                 {% for crime_officer in crime_officer_list %}
                     <tr>
                         <td>
-                            <a href="{% url 'crime_detail' crime_officer.crime.crime_id %}">{{ crime_officer.crime.crime_id }}</a>
+                            <a href="{% url 'crime_detail' crime_officer.crime.crime_id %}">{{ crime_officer.crime }}</a>
                         </td>
                         <td>
                             <a href="{% url 'criminal_detail' crime_officer.crime.criminal.criminal_id %}">{{ crime_officer.crime.criminal }}</a>

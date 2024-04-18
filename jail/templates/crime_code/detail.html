@@ -46,7 +46,7 @@
                     <tr>
                         <td>{{ crime_charge.charge_id }}</td>
                         <td>
-                            <a href="{% url 'crime_detail' crime_charge.crime.crime_id %}">{{ crime_charge.crime.crime_id }}</a>
+                            <a href="{% url 'crime_detail' crime_charge.crime.crime_id %}">{{ crime_charge.crime }}</a>
                         </td>
                         <td>{{ crime_charge.charge_status }}</td>
                         <td>{{ crime_charge.fine_amount }}</td>
