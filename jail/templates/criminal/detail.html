@@ -41,17 +41,62 @@
     </table>
 
     <h2>Known Aliases</h2>
-    {% if alias_list %}
-        <ul>
-            {% for alias in alias_list %}
-                <li>
-                    {{ alias.alias }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No alias found</p>
-    {% endif %}
+    <div>
+        {% if alias_list %}
+            <table>
+                <thead>
+                <tr>
+                    <td>Alias</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </thead>
+                {% for alias in alias_list %}
+                    <tr>
+                        <td>{{ alias.alias }}</td>
+                        <td><a href="{% url 'alias_update' alias.alias_id %}">Edit</a></td>
+                        <td><a href="{% url 'alias_delete' alias.alias_id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No aliases found</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <h2>Crimes</h2>
+        {% if crime_list %}
+            <table>
+                <thead>
+                <tr>
+                    <td>Crime ID</td>
+                    <td>Classification</td>
+                    <td>Date Charged</td>
+                    <td>Status</td>
+                    <td>Hearing Date</td>
+                    <td>Appeal Cut-off Date</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </thead>
+                {% for crime in crime_list %}
+                    <tr>
+                        <td>{{ crime.crime_id }}</td>
+                        <td>{{ crime.classification }}</td>
+                        <td>{{ crime.date_charged }}</td>
+                        <td>{{ crime.status }}</td>
+                        <td>{{ crime.hearing_date }}</td>
+                        <td>{{ crime.appeal_cut_date }}</td>
+                        <td><a href="{% url 'crime_update' crime.crime_id %}">Edit</a></td>
+                        <td><a href="{% url 'crime_delete' crime.crime_id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No crimes found</p>
+        {% endif %}
+    </div>
 
     <div>
         <a href="{% url 'criminal_home' %}">

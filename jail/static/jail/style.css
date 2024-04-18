@@ -8,6 +8,10 @@ table, th, td {
 
 }
 
+thead td {
+    font-weight: bold;
+}
+
 td {
     padding: 5px;
 }
