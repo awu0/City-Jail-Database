@@ -1,0 +1,44 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Officer: {{ object.officer_id }}
+{% endblock %}
+
+{% block body %}
+    <h1>Officer ({{ object.officer_id }})</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Last Name</td>
+            <td>First Name</td>
+            <td>Precinct</td>
+            <td>Badge</td>
+            <td>Phone</td>
+            <td>Status</td>
+            <td></td>
+            <td></td>
+        </tr>
+        </thead>
+        <tr>
+            <td>
+                {{ object.officer_id }}
+            </td>
+            <td>{{ object.last_name }}</td>
+            <td>{{ object.first_name }}</td>
+            <td>{{ object.precinct }}</td>
+            <td>{{ object.badge }}</td>
+            <td>{{ object.phone }}</td>
+            <td>{{ object.status }}</td>
+            <td><a href="{% url 'officer_update' object.officer_id %}">Edit</a></td>
+            <td><a href="{% url 'officer_delete' object.officer_id %}">Delete</a></td>
+        </tr>
+    </table>
+
+    <div>
+        <a href="{% url 'officer_home' %}">
+            <button>All Officers</button>
+        </a>
+    </div>
+{% endblock %}

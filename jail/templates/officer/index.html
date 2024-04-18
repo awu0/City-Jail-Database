@@ -1,0 +1,52 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Officers
+{% endblock %}
+
+{% block body %}
+    <h1>All Officers</h1>
+
+    {% if officer_list %}
+        <table>
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Last Name</td>
+                <td>First Name</td>
+                <td>Precinct</td>
+                <td>Badge</td>
+                <td>Phone</td>
+                <td>Status</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for officer in officer_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'officer_detail' officer.officer_id %}">
+                            {{ officer.officer_id }}
+                        </a>
+                    </td>
+                    <td>{{ officer.last_name }}</td>
+                    <td>{{ officer.first_name }}</td>
+                    <td>{{ officer.precinct }}</td>
+                    <td>{{ officer.badge }}</td>
+                    <td>{{ officer.phone }}</td>
+                    <td>{{ officer.status }}</td>
+                    <td><a href="{% url 'officer_update' officer.officer_id %}">Edit</a></td>
+                    <td><a href="{% url 'officer_delete' officer.officer_id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No probation officers found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'officer_add' %}">
+            <button>Add new</button>
+        </a>
+    </div>
+{% endblock %}
