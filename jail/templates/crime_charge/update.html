@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Update Crime Charge: {{ object.charge_id }}
+{% endblock %}
+
+{% block body %}
+    <h1>Update Crime Charge ({{ object.charge_id }})</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+
+    <a href="{% url 'crime_charge_home' %}">
+        <button>Cancel</button>
+    </a>
+{% endblock %}

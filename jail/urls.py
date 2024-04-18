@@ -1,7 +1,8 @@
 from django.urls import path
 
 from jail.views import views
-from jail.views import criminal_views, alias_views, crime_views, probation_officer_views, sentence_views, crime_code_views
+from jail.views import criminal_views, alias_views, crime_views, probation_officer_views, sentence_views, \
+    crime_code_views, crime_charge
 
 urlpatterns = [
     # home paths
@@ -22,6 +23,7 @@ urlpatterns = [
 
     # crime paths
     path('crime/', crime_views.CrimeHomeView.as_view(), name='crime_home'),
+    path('crime/<int:pk>/', crime_views.CrimeDetailView.as_view(), name='crime_detail'),
     path('crime/<int:pk>/update/', crime_views.CrimeUpdateView.as_view(), name='crime_update'),
     path('crime/add/', crime_views.CrimeFormView.as_view(), name='crime_add'),
     path('crime/<int:pk>/delete/', crime_views.CrimeDeleteView.as_view(), name='crime_delete'),
@@ -49,4 +51,10 @@ urlpatterns = [
     path('crime_code/<int:pk>/update/', crime_code_views.CrimeCodeUpdateView.as_view(), name='crime_code_update'),
     path('crime_code/add/', crime_code_views.CrimeCodeFormView.as_view(), name='crime_code_add'),
     path('crime_code/<int:pk>/delete/', crime_code_views.CrimeCodeDeleteView.as_view(), name='crime_code_delete'),
+
+    # crime charge paths
+    path('crime_charge/', crime_charge.CrimeChargeHomeView.as_view(), name='crime_charge_home'),
+    path('crime_charge/<int:pk>/update/', crime_charge.CrimeChargeUpdateView.as_view(), name='crime_charge_update'),
+    path('crime_charge/add/', crime_charge.CrimeChargeFormView.as_view(), name='crime_charge_add'),
+    path('crime_charge/<int:pk>/delete/', crime_charge.CrimeChargeeDeleteView.as_view(), name='crime_charge_delete'),
 ]
