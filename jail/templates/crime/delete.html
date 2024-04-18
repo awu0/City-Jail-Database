@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Delete Crime: {{ object.crime_id }}
+{% endblock %}
+
+{% block body %}
+    <h1>Delete Crime</h1>
+
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete Crime ({{ crime.crime_id }}) for {{ crime.criminal.first_name }} {{ crime.criminal.last_name }} ({{ crime.criminal_id }})</p>
+        {{ form }}
+        <input type="submit" value="Confirm">
+    </form>
+
+    <a href="{% url 'crime_home' %}">
+        <button>Cancel</button>
+    </a>
+{% endblock %}
