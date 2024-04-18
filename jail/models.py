@@ -54,7 +54,8 @@ class Crime(models.Model):
         constraints = [
             models.CheckConstraint(
                 check=models.Q(hearing_date__gt=models.F('date_charged')),
-                name='hearing_date_gt_date_charged'
+                name='hearing_date_gt_date_charged',
+                violation_error_message='Hearing date must be greater than date charged.'
             ),
         ]
 
@@ -99,7 +100,8 @@ class Sentence(models.Model):
         constraints = [
             models.CheckConstraint(
                 check=models.Q(end_date__gt=models.F('start_date')),
-                name='end_date_gt_start_date'
+                name='end_date_gt_start_date',
+                violation_error_message='End date must be greater than start date.'
             ),
         ]
 
