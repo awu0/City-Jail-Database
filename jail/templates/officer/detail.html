@@ -37,6 +37,48 @@
     </table>
 
     <div>
+        <!-- Crimes associated with this officer -->
+        <h2>Crimes</h2>
+
+        {% if crime_officer_list %}
+            <table>
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Criminal ID</td>
+                    <td>Classification</td>
+                    <td>Date Charged</td>
+                    <td>Status</td>
+                    <td>Hearing Date</td>
+                    <td>Appeal Cut-off Date</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </thead>
+                {% for crime_officer in crime_officer_list %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'crime_detail' crime_officer.crime.crime_id %}">{{ crime_officer.crime.crime_id }}</a>
+                        </td>
+                        <td>
+                            <a href="{% url 'criminal_detail' crime_officer.crime.criminal.criminal_id %}">{{ crime_officer.crime.criminal }}</a>
+                        </td>
+                        <td>{{ crime_officer.crime.classification }}</td>
+                        <td>{{ crime_officer.crime.date_charged }}</td>
+                        <td>{{ crime_officer.crime.status }}</td>
+                        <td>{{ crime_officer.crime.hearing_date }}</td>
+                        <td>{{ crime_officer.crime.appeal_cut_date }}</td>
+                        <td><a href="{% url 'crime_update' crime_officer.crime.crime_id %}">Edit</a></td>
+                        <td><a href="{% url 'crime_delete' crime_officer.crime.crime_id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No crimes found</p>
+        {% endif %}
+    </div>
+
+    <div>
         <a href="{% url 'officer_home' %}">
             <button>All Officers</button>
         </a>

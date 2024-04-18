@@ -35,7 +35,7 @@
     </table>
 
     <div>
-    <h2>Crime Charges</h2>
+        <h2>Crime Charges</h2>
 
         {% if crime_charge_list %}
             <table>
@@ -55,7 +55,9 @@
                 {% for crime_charge in crime_charge_list %}
                     <tr>
                         <td>{{ crime_charge.charge_id }}</td>
-                        <td><a href="{% url 'crime_code_detail' crime_charge.crime_code.crime_code %}">{{ crime_charge.crime_code }}</a></td>
+                        <td>
+                            <a href="{% url 'crime_code_detail' crime_charge.crime_code.crime_code %}">{{ crime_charge.crime_code }}</a>
+                        </td>
                         <td>{{ crime_charge.charge_status }}</td>
                         <td>{{ crime_charge.fine_amount }}</td>
                         <td>{{ crime_charge.court_fee }}</td>
@@ -68,6 +70,48 @@
             </table>
         {% else %}
             <p>No crime charges found</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <!-- Officers associated with this crime -->
+        <h2>Officers</h2>
+
+        {% if crime_officer_list %}
+            <table>
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Last Name</td>
+                    <td>First Name</td>
+                    <td>Precinct</td>
+                    <td>Badge</td>
+                    <td>Phone</td>
+                    <td>Status</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </thead>
+                {% for crime_officer in crime_officer_list %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'officer_detail' crime_officer.officer.officer_id %}">
+                                {{ crime_officer.officer.officer_id }}
+                            </a>
+                        </td>
+                        <td>{{ crime_officer.officer.last_name }}</td>
+                        <td>{{ crime_officer.officer.first_name }}</td>
+                        <td>{{ crime_officer.officer.precinct }}</td>
+                        <td>{{ crime_officer.officer.badge }}</td>
+                        <td>{{ crime_officer.officer.phone }}</td>
+                        <td>{{ crime_officer.officer.status }}</td>
+                        <td><a href="{% url 'officer_update' crime_officer.officer.officer_id %}">Edit</a></td>
+                        <td><a href="{% url 'officer_delete' crime_officer.officer.officer_id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No officers found</p>
         {% endif %}
 
     </div>

@@ -1,6 +1,6 @@
 from django.views import generic
 
-from jail.models import Officer
+from jail.models import Officer, CrimeOfficer
 
 
 class OfficerHomeView(generic.ListView):
@@ -17,6 +17,8 @@ class OfficerDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context['crime_officer_list'] = CrimeOfficer.objects.filter(officer__officer_id=int(self.kwargs['pk']))
 
         return context
 
