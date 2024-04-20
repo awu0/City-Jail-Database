@@ -25,12 +25,15 @@ def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        # For simplicity, we're directly adding the user to our "database"
+        # In a real application, validate the input and hash the password.
         users[username] = password
         return redirect(url_for('after_signup'))
     return render_template('signup.html')
 
 @app.route('/after_signup')
 def after_signup():
+    # Inform the user that the account was created successfully.
     return "Account created successfully! <a href='/login'>Login</a>"
 
 @app.route('/dashboard')
