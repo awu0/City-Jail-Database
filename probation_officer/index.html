@@ -1,0 +1,71 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Probation Officers
+{% endblock %}
+
+{% block body %}
+    <h1>All Probation Officers</h1>
+
+    {% if probation_officer_list %}
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <a href="?sort=prob_id&order={% if current_sort == 'prob_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        ID {% if current_sort == 'prob_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=last_name&order={% if current_sort == 'last_name' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Last Name {% if current_sort == 'last_name' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=first_name&order={% if current_sort == 'first_name' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        First Name {% if current_sort == 'first_name' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <td>Street</td>
+                <td>City</td>
+                <td>State</td>
+                <td>Zip</td>
+                <td>Phone</td>
+                <td>Email</td>
+                <td>Status</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for probation_officer in probation_officer_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'probation_officer_detail' probation_officer.prob_id %}">{{ probation_officer.prob_id }}</a>
+                    </td>
+                    <td>{{ probation_officer.last_name }}</td>
+                    <td>{{ probation_officer.first_name }}</td>
+                    <td>{{ probation_officer.street }}</td>
+                    <td>{{ probation_officer.city }}</td>
+                    <td>{{ probation_officer.state }}</td>
+                    <td>{{ probation_officer.zip }}</td>
+                    <td>{{ probation_officer.phone }}</td>
+                    <td>{{ probation_officer.email }}</td>
+                    <td>{{ probation_officer.status }}</td>
+                    <td><a href="{% url 'probation_officer_update' probation_officer.prob_id %}">Edit</a></td>
+                    <td><a href="{% url 'probation_officer_delete' probation_officer.prob_id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No probation officers found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'probation_officer_add' %}">
+            <button>Add new</button>
+        </a>
+    </div>
+{% endblock %}

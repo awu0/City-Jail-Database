@@ -1,0 +1,67 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Criminals
+{% endblock %}
+
+{% block body %}
+    <h1>All Criminals</h1>
+
+    {% if criminal_list %}
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <a href="?sort=criminal_id&order={% if current_sort == 'criminal_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        ID {% if current_sort == 'criminal_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=last_name&order={% if current_sort == 'last_name' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Last Name {% if current_sort == 'last_name' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=first_name&order={% if current_sort == 'first_name' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        First Name {% if current_sort == 'first_name' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <td>Street</td>
+                <td>City</td>
+                <td>State</td>
+                <td>Zip</td>
+                <td>Phone</td>
+                <td>Violet Offender?</td>
+                <td>Probation?</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for criminal in criminal_list %}
+                <tr>
+                    <td><a href="{% url 'criminal_detail' criminal.criminal_id %}">{{ criminal.criminal_id }}</a></td>
+                    <td>{{ criminal.last_name }}</td>
+                    <td>{{ criminal.first_name }}</td>
+                    <td>{{ criminal.street }}</td>
+                    <td>{{ criminal.city }}</td>
+                    <td>{{ criminal.state }}</td>
+                    <td>{{ criminal.zip }}</td>
+                    <td>{{ criminal.phone }}</td>
+                    <td>{{ criminal.v_status }}</td>
+                    <td>{{ criminal.p_status }}</td>
+                    <td><a href="{% url 'criminal_update' criminal.criminal_id %}">Edit</a></td>
+                    <td><a href="{% url 'criminal_delete' criminal.criminal_id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No criminals found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'criminal_add' %}"><button>Add new</button></a>
+    </div>
+{% endblock %}

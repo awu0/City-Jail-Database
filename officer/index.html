@@ -1,0 +1,67 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Officers
+{% endblock %}
+
+{% block body %}
+    <h1>All Officers</h1>
+
+    {% if officer_list %}
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <a href="?sort=officer_id&order={% if current_sort == 'officer_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        ID {% if current_sort == 'id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=last_name&order={% if current_sort == 'last_name' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Last Name {% if current_sort == 'last_name' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=first_name&order={% if current_sort == 'first_name' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        First Name {% if current_sort == 'first_name' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <td>Precinct</td>
+                <td>Badge</td>
+                <td>Phone</td>
+                <td>Status</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for officer in officer_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'officer_detail' officer.officer_id %}">
+                            {{ officer.officer_id }}
+                        </a>
+                    </td>
+                    <td>{{ officer.last_name }}</td>
+                    <td>{{ officer.first_name }}</td>
+                    <td>{{ officer.precinct }}</td>
+                    <td>{{ officer.badge }}</td>
+                    <td>{{ officer.phone }}</td>
+                    <td>{{ officer.status }}</td>
+                    <td><a href="{% url 'officer_update' officer.officer_id %}">Edit</a></td>
+                    <td><a href="{% url 'officer_delete' officer.officer_id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No officers found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'officer_add' %}">
+            <button>Add new</button>
+        </a>
+    </div>
+{% endblock %}

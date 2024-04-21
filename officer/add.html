@@ -1,0 +1,16 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Add Officer
+{% endblock %}
+
+{% block body %}
+    <h1>Add Officer</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+    <a href="{% url 'officer_home' %}"><button>Cancel</button></a>
+{% endblock %}

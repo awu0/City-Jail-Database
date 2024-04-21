@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Delete Probation Officer: {{ object.prob_id }}
+{% endblock %}
+
+{% block body %}
+    <h1>Delete Probation Officer</h1>
+
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete {{ object.first_name }} {{ object.last_name }} ({{ object.prob_id }})?</p>
+        {{ form }}
+        <input type="submit" value="Confirm">
+    </form>
+
+    <a href="{% url 'probation_officer_detail' object.prob_id %}">
+        <button>Cancel</button>
+    </a>
+{% endblock %}

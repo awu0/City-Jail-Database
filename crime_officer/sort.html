@@ -1,0 +1,24 @@
+{% extends 'template.html' %}  
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>
+                <a href="?sort=name&order={% if current_sort == 'name' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                    {% if current_sort == 'name' %}
+                        {% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                    {% endif %}
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for crime_officer in crime_officer_list %}
+        <tr>
+            <td>{{ crime_officer.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

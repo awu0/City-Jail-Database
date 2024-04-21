@@ -1,0 +1,58 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Crimes
+{% endblock %}
+
+{% block body %}
+    <h1>All Crimes</h1>
+
+    {% if crime_list %}
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <a href="?sort=crime_id&order={% if current_sort == 'crime_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        ID {% if current_sort == 'id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=criminal_id&order={% if current_sort == 'criminal_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Criminal ID {% if current_sort == 'criminal_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <td>Classification</td>
+                <td>Date Charged</td>
+                <td>Status</td>
+                <td>Hearing Date</td>
+                <td>Appeal Cut-off Date</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for crime in crime_list %}
+                <tr>
+                    <td><a href="{% url 'crime_detail' crime.crime_id %}">{{ crime.crime_id }}</a></td>
+                    <td><a href="{% url 'criminal_detail' crime.criminal.criminal_id %}">{{ crime.criminal }}</a></td>
+                    <td>{{ crime.classification }}</td>
+                    <td>{{ crime.date_charged }}</td>
+                    <td>{{ crime.status }}</td>
+                    <td>{{ crime.hearing_date }}</td>
+                    <td>{{ crime.appeal_cut_date }}</td>
+                    <td><a href="{% url 'crime_update' crime.crime_id %}">Edit</a></td>
+                    <td><a href="{% url 'crime_delete' crime.crime_id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No crimes found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'crime_add' %}">
+            <button>Add new</button>
+        </a>
+    </div>
+{% endblock %}

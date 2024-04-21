@@ -1,0 +1,16 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Add Appeal
+{% endblock %}
+
+{% block body %}
+    <h1>Add Appeal</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+    <a href="{% url 'appeal_home' %}"><button>Cancel</button></a>
+{% endblock %}

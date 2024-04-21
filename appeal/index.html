@@ -1,0 +1,52 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Appeals
+{% endblock %}
+
+{% block body %}
+    <h1>All Appeals</h1>
+
+    {% if appeal_list %}
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    <a href="?sort=appeal_id&order={% if current_sort == 'appeal_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        ID {% if current_sort == 'appeal_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=criminal_id&order={% if current_sort == 'criminal_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Criminal ID {% if current_sort == 'criminal_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <td>Filing Date</td>
+                <td>Hearing Date</td>
+                <td>Status</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            {% for appeal in appeal_list %}
+                <tr>
+                    <td>{{ appeal.appeal_id }}</td>
+                    <td><a href="{% url 'crime_detail' appeal.crime.crime_id %}">{{ appeal.crime }}</a></td>
+                    <td>{{ appeal.filing_date }}</td>
+                    <td>{{ appeal.hearing_date }}</td>
+                    <td>{{ appeal.status }}</td>
+                    <td><a href="{% url 'appeal_update' appeal.appeal_id %}">Edit</a></td>
+                    <td><a href="{% url 'appeal_delete' appeal.appeal_id %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No appeals found</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'appeal_add' %}"><button>Add new</button></a>
+    </div>
+{% endblock %}
