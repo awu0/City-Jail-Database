@@ -183,3 +183,8 @@ class Appeal(models.Model):
     filing_date = models.DateField(null=True, blank=True)
     hearing_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=1, choices=Status.choices, default=Status.P)
+
+class User(models.Model):
+    id = models.AutoField(primary_key=True)
+    username = models.CharField(unique=True, max_length=80, blank=False)
+    password = models.CharField(max_length=50)
