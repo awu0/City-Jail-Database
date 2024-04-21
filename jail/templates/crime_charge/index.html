@@ -12,14 +12,14 @@
             <thead>
             <tr>
                 <th>
-                    <a href="?sort=alias_id&order={% if current_sort == 'alias_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
-                        ID {% if current_sort == 'id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                    <a href="?sort=charge_id&order={% if current_sort == 'charge_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        ID {% if current_sort == 'charge_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
                         {% endif %}
                     </a>
                 </th>
                 <th>
-                    <a href="?sort=criminal_id&order={% if current_sort == 'criminal_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
-                        Criminal ID {% if current_sort == 'criminal_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                    <a href="?sort=crime_id&order={% if current_sort == 'crime_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Crime ID {% if current_sort == 'crime_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
                         {% endif %}
                     </a>
                 </th>
