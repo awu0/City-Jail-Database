@@ -11,9 +11,24 @@
         <table>
             <thead>
             <tr>
-                <td>ID</td>
-                <td>Last Name</td>
-                <td>First Name</td>
+                <th>
+                    <a href="?sort=prob_id&order={% if current_sort == 'prob_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        ID {% if current_sort == 'prob_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=last_name&order={% if current_sort == 'last_name' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Last Name {% if current_sort == 'last_name' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=first_name&order={% if current_sort == 'first_name' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        First Name {% if current_sort == 'first_name' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
                 <td>Street</td>
                 <td>City</td>
                 <td>State</td>

@@ -11,9 +11,24 @@
         <table>
             <thead>
             <tr>
-                <td>ID</td>
-                <td>Crime ID</td>
-                <td>Crime Code</td>
+                <th>
+                    <a href="?sort=alias_id&order={% if current_sort == 'alias_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        ID {% if current_sort == 'id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=criminal_id&order={% if current_sort == 'criminal_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Criminal ID {% if current_sort == 'criminal_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=crime_code&order={% if current_sort == 'crime_code' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Crime Code </Code> {% if current_sort == 'crime_code' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
                 <td>Charge Status</td>
                 <td>Fine Amount</td>
                 <td>Court Fee</td>

@@ -8,7 +8,18 @@ class CrimeCodeHomeView(generic.ListView):
     context_object_name = 'crime_code_list'
 
     def get_queryset(self):
-        return CrimeCode.objects.order_by('crime_code')
+        sort = self.request.GET.get('sort', 'crime_code')  
+        order = self.request.GET.get('order', 'asc')  
+        
+        if order == 'desc':
+            sort = '-' + sort  
+        return CrimeCode.objects.order_by(sort)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_sort'] = self.request.GET.get('sort', 'crime_code')
+        context['current_order'] = self.request.GET.get('order', 'asc')
+        return context
 
 
 class CrimeCodeDetailView(generic.DetailView):

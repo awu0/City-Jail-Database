@@ -1,5 +1,4 @@
 from django.views import generic
-
 from jail.models import Criminal, Alias, Crime, Sentence
 
 
@@ -8,8 +7,18 @@ class CriminalHomeView(generic.ListView):
     context_object_name = 'criminal_list'
 
     def get_queryset(self):
-        return Criminal.objects.order_by('criminal_id')
+        sort = self.request.GET.get('sort', 'criminal_id')
+        order = self.request.GET.get('order', 'asc')
 
+        if order == 'desc':
+                sort = '-' + sort
+        return Criminal.objects.order_by(sort)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_sort'] = self.request.GET.get('sort', 'criminal_id')
+        context['current_order'] = self.request.GET.get('order', 'asc')
+        return context
 
 class CriminalDetailView(generic.DetailView):
     model = Criminal

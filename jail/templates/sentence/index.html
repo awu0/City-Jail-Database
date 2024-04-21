@@ -11,10 +11,25 @@
         <table>
             <thead>
             <tr>
-                <td>ID</td>
-                <td>Criminal ID</td>
+                <th>
+                    <a href="?sort=sentence_id&order={% if current_sort == 'sentence_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        ID {% if current_sort == 'id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort=criminal_id&order={% if current_sort == 'criminal_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Criminal ID {% if current_sort == 'criminal_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
                 <td>Type</td>
-                <td>Probation Officer ID</td>
+                <th>
+                    <a href="?sort=prob_officer_id&order={% if current_sort == 'prob_officer_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Prohibition Officer ID {% if current_sort == 'prob_officer_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
                 <td>Start Date</td>
                 <td>End Date</td>
                 <td>Violations</td>

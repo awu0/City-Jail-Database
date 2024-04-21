@@ -1,5 +1,5 @@
 from django.views import generic
-
+from django.db.models import F
 from jail.models import ProbationOfficer, Sentence
 
 
@@ -8,7 +8,18 @@ class ProbationOfficerHomeView(generic.ListView):
     context_object_name = 'probation_officer_list'
 
     def get_queryset(self):
-        return ProbationOfficer.objects.order_by('prob_id')
+        sort = self.request.GET.get('sort', 'prob_id')  
+        order = self.request.GET.get('order', 'asc')  
+        
+        if order == 'desc':
+            sort = '-' + sort  
+        return ProbationOfficer.objects.order_by(sort)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_sort'] = self.request.GET.get('sort', 'prob_id')
+        context['current_order'] = self.request.GET.get('order', 'asc')
+        return context
 
 
 class ProbationOfficerDetailView(generic.DetailView):
