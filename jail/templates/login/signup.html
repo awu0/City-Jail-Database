@@ -1,0 +1,64 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    Add Criminal
+{% endblock %}
+
+{% block body %}
+<div class="login-div">
+    <div style="margin-bottom: 20px; color: #0c63e4">
+        <h2>SIGN UP</h2>
+        <input type="hidden" id="crsf" value="{{ csrf_token }}"/>
+    </div>
+    <div class="login-item">
+        <div class="label">
+            <label for="username">Username</label>
+        </div>
+        <div>
+            <input type="text" class="" id="username" placeholder="Enter Username">
+        </div>
+    </div>
+    <div class="login-item">
+        <div class="label">
+            <label for="password">Password</label>
+        </div>
+        <div>
+            <input type="password" class="" id="password" placeholder="Enter Password">
+        </div>
+    </div>
+    <div class="btns">
+        <button class="" onclick="tologin()">Login</button>
+        <button style="font-size: 1.75rem;background-color: #0c63e4;color: white;" onclick="signup()">SIGN UP</button>
+    </div>
+</div>
+<script>
+    function tologin() {
+        window.location.href = '/login/'
+    }
+
+    function signup() {
+        fetch('/signup/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            window.location.href = '/login/'
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+{% endblock %}
