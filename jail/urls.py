@@ -76,4 +76,9 @@ urlpatterns = [
     path('appeal/<int:pk>/update/', appeal_views.AppealUpdateView.as_view(), name='appeal_update'),
     path('appeal/add/', appeal_views.AppealFormView.as_view(), name='appeal_add'),
     path('appeal/<int:pk>/delete/', appeal_views.AppealDeleteView.as_view(), name='appeal_delete'),
+
+    # login/sign up
+    path('login/', login_views.login, name='login'),
+    path('signup/', login_views.signup, name='signup'),
+    path('signout/', login_views.signout, name='logout')
 ]
