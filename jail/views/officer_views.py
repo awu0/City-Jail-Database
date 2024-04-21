@@ -8,7 +8,18 @@ class OfficerHomeView(generic.ListView):
     context_object_name = 'officer_list'
 
     def get_queryset(self):
-        return Officer.objects.order_by('officer_id')
+        sort = self.request.GET.get('sort', 'officer_id')  
+        order = self.request.GET.get('order', 'asc')  
+        
+        if order == 'desc':
+            sort = '-' + sort  
+        return Officer.objects.order_by(sort)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_sort'] = self.request.GET.get('sort', 'officer_id')
+        context['current_order'] = self.request.GET.get('order', 'asc')
+        return context
 
 
 class OfficerDetailView(generic.DetailView):

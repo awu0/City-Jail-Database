@@ -11,7 +11,12 @@
         <table>
             <thead>
             <tr>
-                <td>Crime Code</td>
+                <th>
+                    <a href="?sort=crime_code&order={% if current_sort == 'crime_code' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Crime Code </Code> {% if current_sort == 'crime_code' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                        {% endif %}
+                    </a>
+                </th>
                 <td>Code Description</td>
                 <td></td>
                 <td></td>
