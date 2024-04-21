@@ -2,7 +2,7 @@ from django.urls import path
 
 from jail.views import views
 from jail.views import criminal_views, alias_views, crime_views, probation_officer_views, sentence_views, \
-    crime_code_views, crime_charge, officer_views, appeal_views, crime_officer_views
+    crime_code_views, crime_charge, officer_views, appeal_views, crime_officer_views, login_views
 
 urlpatterns = [
     # home paths
