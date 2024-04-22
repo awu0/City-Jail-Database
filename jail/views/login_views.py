@@ -1,8 +1,12 @@
 import json
 from django.http import JsonResponse
 from django.shortcuts import render
+import json
+from django.http import JsonResponse
+from django.shortcuts import render
 from django.views import generic
 from jail.models import User
+import hashlib
 
 def login(request):
     if request.method == 'POST':
@@ -10,15 +14,19 @@ def login(request):
         username = data.get("username", "")
         password = data.get("password", "")
 
-        user = User.objects.filter(username=username,password=password)
+        user = User.objects.get(username=username)
 
-        if user.exists():
-            user = user.first()
+        stored_hashed_password = user.password
+
+        hashed_password = str(hashlib.sha256(password.encode()).hexdigest())
+
+        if hashed_password == stored_hashed_password:
             request.session["user"] = {
                 'id': user.id,
                 'username': user.username,
             }
             return JsonResponse({'message': "Login successful"}, status=200)
+
         else:
             return JsonResponse({'message': "Username or password incorrect"}, status=400)
     else:
@@ -40,7 +48,8 @@ def signup(request):
         if User.objects.filter(username=username).exists():
             return JsonResponse({'message': 'This username already exists.'}, status=400)
         else:
-            User.objects.create(username=username,password=password)
+            hashed_password = str(hashlib.sha256(password.encode()).hexdigest())
+            User.objects.create(username=username,password=hashed_password)
 
         return JsonResponse({'message': 'Registration successful'}, status=200)
     else:
