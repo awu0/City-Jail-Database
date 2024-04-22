@@ -54,3 +54,4 @@ def signup(request):
         return JsonResponse({'message': 'Registration successful'}, status=200)
     else:
         return render(request, 'login/signup.html')
+
