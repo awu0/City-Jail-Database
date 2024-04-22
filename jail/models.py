@@ -187,4 +187,4 @@ class Appeal(models.Model):
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(unique=True, max_length=80, blank=False)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=255)
