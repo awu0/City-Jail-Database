@@ -49,6 +49,7 @@
         })
         .then(response => {
             if (!response.ok) {
+                alert(response.json().message)
                 throw new Error('was not ok');
             }
             return response.json();
