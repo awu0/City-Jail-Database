@@ -1,5 +1,15 @@
+* {
+    font-family: sans-serif;
+}
+
 h1 {
-    color: darkblue;
+    color: #1F6E8C;
+}
+.title {
+    color: #EEEEEE;
+}
+h2 {
+    color: #1F6E8C;
 }
 
 table, th, td {
@@ -14,4 +24,38 @@ thead td {
 
 td {
     padding: 5px;
+}
+body {
+    background: #31363F;
+}
+.login-div {
+    width: 200px;
+    padding-left: 30px;
+    background: #EEEEEE;
+    margin: 0 auto;
+    margin-top: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+button {
+    color: #1F6E8C;
+}
+
+.Login {
+    margin-top: 17px;
+    margin-bottom: 20px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1.75rem;
+    background-color: #1F6E8C;
+    color: white;
+}
+
+a:visited {
+    color: #1F6E8C;
+}
+a {
+    color: #1F6E8C;
 }

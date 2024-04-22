@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block body %}
+    <h1 class="title"> City Jail Database </h1>
 <div class="login-div">
     <div style="margin-bottom: 20px; color: #0c63e4">
-        <h2>Login</h2>
+        <h2>LOGIN</h2>
         <input type="hidden" id="crsf" value="{{ csrf_token }}"/>
     </div>
     <div class="login-item">
@@ -28,7 +29,7 @@
     </div>
     <div class="btns">
         <button onclick="tosignup()">Signup</button>
-        <button style="font-size: 1.75rem;background-color: #0c63e4;color: white;" onclick="login()">Login</button>
+        <button class="Login" onclick="login()">→</button>
     </div>
 </div>
 <script>
