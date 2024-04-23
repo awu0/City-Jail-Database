@@ -1,18 +1,33 @@
-{% extends 'template.html' %}
 
-{% block title %}
-    Add Criminal
-{% endblock %}
 
-{% block body %}
+<!--
+Use this template for rendering all the other html files
+-->
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'jail/style.css' %}">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+
 <div class="login-div">
     <div style="margin-bottom: 20px; color: #0c63e4">
-        <h2>SIGN UP</h2>
+        <h2 style="color: #222831;">SIGNUP</h2>
         <input type="hidden" id="crsf" value="{{ csrf_token }}"/>
     </div>
     <div class="login-item">
         <div class="label">
-            <label for="username">Username</label>
+            <label style="color: #222831;" for="username">Username</label>
         </div>
         <div>
             <input type="text" class="" id="username" placeholder="Enter Username">
@@ -20,15 +35,15 @@
     </div>
     <div class="login-item">
         <div class="label">
-            <label for="password">Password</label>
+            <label style="color: #222831;" for="password">Password</label>
         </div>
         <div>
             <input type="password" class="" id="password" placeholder="Enter Password">
         </div>
     </div>
     <div class="btns">
-        <button class="" onclick="tologin()">Login</button>
-        <button style="font-size: 1.75rem;background-color: #0c63e4;color: white;" onclick="signup()">SIGN UP</button>
+        <button style="background: #222831" onclick="tologin()">LOGIN</button>
+        <button class="Login" onclick="signup()">→</button>
     </div>
 </div>
 <script>
@@ -62,4 +77,7 @@
         });
     }
 </script>
+{% block body %}
 {% endblock %}
+</body>
+</html>

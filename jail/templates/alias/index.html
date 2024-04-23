@@ -5,51 +5,53 @@
 {% endblock %}
 
 {% block body %}
-    <h1>All Aliases</h1>
-
-    {% if alias_list %}
-        <table>
-            <thead>
-            <tr>
-                <th>
-                    <a href="?sort=alias_id&order={% if current_sort == 'alias_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
-                        ID {% if current_sort == 'id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
-                        {% endif %}
-                    </a>
-                </th>
-                <th>
-                    <a href="?sort=criminal_id&order={% if current_sort == 'criminal_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
-                        Criminal ID {% if current_sort == 'criminal_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
-                        {% endif %}
-                    </a>
-                </th>
-                <th>
-                    <a href="?sort=alias&order={% if current_sort == 'alias' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
-                        Alias {% if current_sort == 'alias' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
-                        {% endif %}
-                    </a>
-                </th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for alias in alias_list %}
+    <div class="main">
+        <h1>All Aliases</h1>
+            {% if alias_list %}
+            <table>
+                <thead>
                 <tr>
-                    <td>{{ alias.alias_id }}</td>
-                    <td><a href="{% url 'criminal_detail' alias.criminal.criminal_id %}">{{ alias.criminal }}</a></td>
-                    <td>{{ alias.alias }}</td>
-                    <td><a href="{% url 'alias_update' alias.alias_id %}">Edit</a></td>
-                    <td><a href="{% url 'alias_delete' alias.alias_id %}">Delete</a></td>
+                    <th>
+                        <a href="?sort=alias_id&order={% if current_sort == 'alias_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                            ID {% if current_sort == 'id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                            {% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="?sort=criminal_id&order={% if current_sort == 'criminal_id' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                            Criminal ID {% if current_sort == 'criminal_id' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                            {% endif %}
+                        </a>
+                    </th>
+                    <th>
+                        <a href="?sort=alias&order={% if current_sort == 'alias' and current_order == 'asc' %}desc{% else %}asc{% endif %}">
+                            Alias {% if current_sort == 'alias' %}{% if current_order == 'asc' %}↓{% else %}↑{% endif %}
+                            {% endif %}
+                        </a>
+                    </th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No aliases found</p>
-    {% endif %}
-
-    <div>
-        <a href="{% url 'alias_add' %}"><button>Add new</button></a>
+                </thead>
+                <tbody>
+                {% for alias in alias_list %}
+                    <tr>
+                        <td>{{ alias.alias_id }}</td>
+                        <td><a href="{% url 'criminal_detail' alias.criminal.criminal_id %}">{{ alias.criminal }}</a></td>
+                        <td>{{ alias.alias }}</td>
+                        <td><a href="{% url 'alias_update' alias.alias_id %}">Edit</a></td>
+                        <td><a href="{% url 'alias_delete' alias.alias_id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No aliases found</p>
+        {% endif %}
+        
+        <div>
+            <a href="{% url 'alias_add' %}"><button>Add new</button></a>
+        </div>
     </div>
+    
 {% endblock %}

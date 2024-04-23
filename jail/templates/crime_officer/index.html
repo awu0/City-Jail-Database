@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    <div class="main">
     <h1>Crimes and Associated Officers</h1>
 
     {% if crime_officer_list %}
@@ -47,5 +48,6 @@
         <a href="{% url 'crime_officer_add' %}">
             <button>Add new</button>
         </a>
+    </div>
     </div>
 {% endblock %}

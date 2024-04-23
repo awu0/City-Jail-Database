@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    <div class="main">
     <h1>All Appeals</h1>
 
     {% if appeal_list %}
@@ -49,4 +50,6 @@
     <div>
         <a href="{% url 'appeal_add' %}"><button>Add new</button></a>
     </div>
+    </div>
+    
 {% endblock %}

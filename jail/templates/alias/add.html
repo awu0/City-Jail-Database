@@ -5,12 +5,15 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Add Alias</h1>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit">
-    </form>
-    <a href="{% url 'alias_home' %}"><button>Cancel</button></a>
+    <div class="form">
+        <h1>Add Alias</h1>
+    
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit">
+        </form>
+        <a href="{% url 'alias_home' %}"><button>Cancel</button></a>
+    </div>
+    
 {% endblock %}

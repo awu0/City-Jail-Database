@@ -18,29 +18,30 @@ Use this template for rendering all the other html files
 </head>
 <body>
 <nav>
-    <div>
-        <a href="{% url 'site_home' %}">Home</a>
-        <a href="{% url 'criminal_home' %}">Criminal</a>
-        <a href="{% url 'alias_home' %}">Alias</a>
-        <a href="{% url 'crime_home' %}">Crime</a>
-        <a href="{% url 'probation_officer_home' %}">Probation Officer</a>
-        <a href="{% url 'sentence_home' %}">Sentence</a>
-        <a href="{% url 'crime_code_home' %}">Crime Code</a>
-        <a href="{% url 'crime_charge_home' %}">Crime Charge</a>
-        <a href="{% url 'officer_home' %}">Officer</a>
-        <a href="{% url 'appeal_home' %}">Appeal</a>
-        <a href="{% url 'crime_officer_home' %}">Crimes & Officers</a>
+    <div class="tabs">
+        <a href="{% url 'site_home' %}" class="navlink">Home</a>
+        <a href="{% url 'criminal_home' %}" class="navlink">Criminal</a>
+        <a href="{% url 'alias_home' %}" class="navlink">Alias</a>
+        <a href="{% url 'crime_home' %}" class="navlink">Crime</a>
+        <a href="{% url 'probation_officer_home' %}" class="navlink">Probation Officer</a>
+        <a href="{% url 'sentence_home' %}" class="navlink">Sentence</a>
+        <a href="{% url 'crime_code_home' %}" class="navlink">Crime Code</a>
+        <a href="{% url 'crime_charge_home' %}" class="navlink">Crime Charge</a>
+        <a href="{% url 'officer_home' %}" class="navlink">Officer</a>
+        <a href="{% url 'appeal_home' %}" class="navlink">Appeal</a>
+        <a href="{% url 'crime_officer_home' %}" class="navlink">Crimes & Officers</a>
     </div>
 
-    <div>
+    <div class="loginsignup">
         {% if request.session.user %}
+            <span>Hello,&nbsp;</span>
             {{ request.session.user.username }}
-            |
-            <a href="/signout/">SIGN OUT</a>
+            !&nbsp;|&nbsp;
+            <a href="/signout/" style="color: #EEEEEE"> SIGN OUT</a>
         {% else %}
-            <a href="/login/">LOGIN</a>
+            <a href="/login/" style="color: #EEEEEE">LOGIN</a>
             |
-            <a href="/signup/">SIGN UP</a>
+            <a href="/signup/" style="color: #EEEEEE"> SIGN UP</a>
         {% endif %}
         
     </div>

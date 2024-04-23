@@ -1,46 +1,67 @@
 * {
     font-family: sans-serif;
-    color: white;
 }
 
 h1 {
-    color: #1F6E8C;
+    color: #EEEEEE;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    margin-top: 22vh;
+}
+.welcome {
+    color: #EEEEEE;
+    font-size: 100px;
 }
 .title {
     color: #EEEEEE;
 }
+
 h2 {
-    color: #1F6E8C;
+    color: #EEEEEE;
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 2px solid #EEEEEE;;
     border-collapse: collapse;
-
+    margin-bottom: 18px;
 }
 
 thead td {
     font-weight: bold;
 }
 
+label {
+    color: #EEEEEE;
+}
 td {
     padding: 5px;
 }
 body {
-    background: #31363F;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    background: #222831;
+    color: #EEEEEE;
 }
 .login-div {
     width: 200px;
     padding-left: 30px;
     background: #EEEEEE;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 30vh;
     border: 1px solid black;
     border-radius: 10px;
 }
 
 button {
-    color: #1F6E8C;
+    color: #EEEEEE;
+    font-size: 20px;
+    background: #1F6E8C;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .Login {
@@ -55,8 +76,49 @@ button {
 }
 
 a:visited {
-    color: #1F6E8C;
+    color: #38c8ff;
 }
 a {
-    color: #1F6E8C;
+    color: #38c8ff;
+}
+
+nav {
+    background: #1F6E8C;
+    width: 100%;
+    padding: 15px 15px 15px 15px;
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.navlink {
+    color: #EEEEEE;
+    font-size: 1.5vw;
+    padding: 5px 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #222831;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.navlink:visited {
+    color: #EEEEEE;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.loginsignup {
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
