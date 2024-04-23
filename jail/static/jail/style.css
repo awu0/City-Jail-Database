@@ -123,6 +123,6 @@ nav {
     flex-direction: column;
 }
 
-input, select {
+input, select, option {
     color: black;
 }
